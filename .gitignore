@@ -1,0 +1,75 @@
+# Visual Studio
+.vs/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Build Results
+[Bb]in/
+[Oo]bj/
+AppPackages/
+TestResults/
+*.appx
+*.appxbundle
+*.msix
+*.msixbundle
+*.nupkg
+*.snupkg
+*.Symbols.nupkg
+
+# .NET
+project.lock.json
+project.fragment.lock.json
+artifacts/
+
+# MAUI / Xamarin
+**/Platforms/Android/obj/
+**/Platforms/Android/bin/
+**/Platforms/iOS/obj/
+**/Platforms/iOS/bin/
+**/Platforms/MacCatalyst/obj/
+**/Platforms/MacCatalyst/bin/
+**/Platforms/Tizen/obj/
+**/Platforms/Tizen/bin/
+**/Platforms/Windows/obj/
+**/Platforms/Windows/bin/
+
+# VS Code (si lo usas también)
+.vscode/
+
+# NuGet
+*.nupkg
+*.snupkg
+.nuget/
+packages/
+*.nuspec
+*.psmdcp
+*.nupkg.metadata
+
+# User-specific files
+*.user
+*.userprefs
+*.suo
+*.sln.docstates
+
+# Logs
+*.log
+
+# Others
+Thumbs.db
+ehthumbs.db
+*.DS_Store
+*.apk
+*.ap_
+*.crash
+*.swp
+*.tmp
+*.bak
+*.old
+*.orig
+*.rej
+
+# JetBrains Rider (si lo usas)
+.idea/
+*.sln.iml

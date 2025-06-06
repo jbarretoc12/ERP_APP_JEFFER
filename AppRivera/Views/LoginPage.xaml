@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AppRivera.Views.LoginPage"
+             Title="LoginPage">
+    
+    <StackLayout Padding="20">
+        <Entry x:Name="UsernameEntry" Placeholder="Usuario"/>
+        <Entry x:Name="PasswordEntry" Placeholder="Contraseña" IsPassword="True"/>
+        <Button x:Name="btnAcceder" Text="Iniciar sesión" Clicked="btnAcceder_Clicked"/>
+    </StackLayout>
+</ContentPage>
