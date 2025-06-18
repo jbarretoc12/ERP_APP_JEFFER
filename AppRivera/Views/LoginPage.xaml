@@ -15,6 +15,7 @@
             <!-- Correo -->
             <Frame CornerRadius="10" Padding="10" BackgroundColor="#F5F5F5" HasShadow="False" BorderColor="#DDDDDD">
                 <Entry Text="{Binding Correo}"
+                          x:Name="txtCorreo"
                        Placeholder="Correo electrónico"
                        Keyboard="Email"
                        BackgroundColor="Transparent"
@@ -25,6 +26,7 @@
             <!-- Contraseña -->
             <Frame CornerRadius="10" Padding="10" BackgroundColor="#F5F5F5" HasShadow="False" BorderColor="#DDDDDD">
                 <Entry Text="{Binding Clave}"
+                          x:Name="txtClave"
                        Placeholder="Contraseña"
                        IsPassword="True"
                        BackgroundColor="Transparent"
@@ -33,8 +35,10 @@
             </Frame>
 
             <!-- Botón Login -->
-            <Button Text="Iniciar sesión"
-                    Command="{Binding LoginCommand}"
+                    <!--x:Name="btnIniciar"-->
+            <Button Text="Iniciar sesión" Command="{Binding LoginCommand}"
+                    
+                    Clicked="btnIniciar_Clicked"
                     BackgroundColor="#D32F2F"
                     TextColor="White"
                     FontAttributes="Bold"
