@@ -2,11 +2,71 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="AppRivera.Views.LoginPage"
-             Title="LoginPage">
-    
-    <StackLayout Padding="20">
-        <Entry x:Name="UsernameEntry" Placeholder="Usuario"/>
-        <Entry x:Name="PasswordEntry" Placeholder="Contraseña" IsPassword="True"/>
-        <Button x:Name="btnAcceder" Text="Iniciar sesión" Clicked="btnAcceder_Clicked"/>
-    </StackLayout>
+             Title="Login">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="30" Spacing="20" VerticalOptions="CenterAndExpand">
+
+            <!-- Logo -->
+            <Image Source="logord.png"
+                   HeightRequest="120"
+                   HorizontalOptions="Center" />
+
+            <!-- Correo -->
+            <Frame CornerRadius="10" Padding="10" BackgroundColor="#F5F5F5" HasShadow="False" BorderColor="#DDDDDD">
+                <Entry Text="{Binding Correo}"
+                       Placeholder="Correo electrónico"
+                       Keyboard="Email"
+                       BackgroundColor="Transparent"
+                       TextColor="Black"
+                       PlaceholderColor="Gray" />
+            </Frame>
+
+            <!-- Contraseña -->
+            <Frame CornerRadius="10" Padding="10" BackgroundColor="#F5F5F5" HasShadow="False" BorderColor="#DDDDDD">
+                <Entry Text="{Binding Clave}"
+                       Placeholder="Contraseña"
+                       IsPassword="True"
+                       BackgroundColor="Transparent"
+                       TextColor="Black"
+                       PlaceholderColor="Gray" />
+            </Frame>
+
+            <!-- Botón Login -->
+            <Button Text="Iniciar sesión"
+                    Command="{Binding LoginCommand}"
+                    BackgroundColor="#D32F2F"
+                    TextColor="White"
+                    FontAttributes="Bold"
+                    HeightRequest="50"
+                    CornerRadius="10" />
+
+            <!-- Enlace para registro --><!--
+            <Label HorizontalOptions="Center">
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span Text="¿No tienes cuenta? " />
+                        <Span Text="Regístrate"
+                  TextColor="#D32F2F"
+                  FontAttributes="Bold">
+                            <Span.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding RegisterCommand}" />
+                            </Span.GestureRecognizers>
+                        </Span>
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>-->
+
+            <!-- Botón para registro -->
+            <Button Text="Regístrate"
+                    Command="{Binding RegisterCommand}"
+                    BackgroundColor="Transparent"
+                    TextColor="#D32F2F"
+                    FontAttributes="Bold"
+                    HeightRequest="30"
+                    CornerRadius="5" />
+
+        </VerticalStackLayout>
+    </ScrollView>
+
 </ContentPage>

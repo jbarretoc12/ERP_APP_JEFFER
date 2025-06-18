@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AppRivera.Views.RegisterPage"
+             Title="Register">
+    <ScrollView>
+        <VerticalStackLayout Padding="30" Spacing="20" VerticalOptions="CenterAndExpand">
+
+            <Label Text="Crear cuenta"
+                   FontSize="24"
+                   HorizontalOptions="Center"
+                   FontAttributes="Bold" />
+
+            <Entry Placeholder="Nombre"
+                   Text="{Binding Nombre}"
+                   Keyboard="Default"
+                   TextColor="Black"
+                   PlaceholderColor="Gray" />
+
+            <Entry Placeholder="Correo electrónico"
+                   Text="{Binding Correo}"
+                   Keyboard="Email"
+                   TextColor="Black"
+                   PlaceholderColor="Gray" />
+
+            <Entry Placeholder="Contraseña"
+                   Text="{Binding Clave}"
+                   IsPassword="True"
+                   TextColor="Black"
+                   PlaceholderColor="Gray" />
+
+            <Button Text="Registrarse"
+                    Command="{Binding RegisterCommand}"
+                    BackgroundColor="#D32F2F"
+                    TextColor="White"
+                    CornerRadius="10"
+                    HeightRequest="50"
+                    FontAttributes="Bold" />
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

@@ -3,15 +3,32 @@
     x:Class="AppRivera.AppShell"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:local="clr-namespace:AppRivera"
-    Shell.FlyoutBehavior="Disabled"
+    xmlns:views="clr-namespace:AppRivera.Views"
+    Shell.FlyoutBehavior="Flyout"
     Title="AppRivera">
 
-    <ShellContent
-        Title="Home"
-        ContentTemplate="{DataTemplate local:MainPage}"
-        Route="MainPage" />
+    <!--<ShellContent Route="LoginPage" ContentTemplate="{DataTemplate views:LoginPage}" />
+    <ShellContent Route="RegisterPage" ContentTemplate="{DataTemplate views:RegisterPage}" />
+    <ShellContent Route="PrincipalPage" ContentTemplate="{DataTemplate views:PrincipalPage}" />
+    <ShellContent Route="ProyectoPage" ContentTemplate="{DataTemplate views:ProyectoPage}" />
+    <ShellContent Route="TareoPage" ContentTemplate="{DataTemplate views:TareoPage}" />
+    <ShellContent Route="MenuPage" ContentTemplate="{DataTemplate views:MenuPage}" />-->
 
+    <!-- Página principal después del login -->
+    <FlyoutItem Title="Inicio" Route="PrincipalPage">
+        <ShellContent ContentTemplate="{DataTemplate views:PrincipalPage}" />
+    </FlyoutItem>
 
+    <FlyoutItem Title="Proyectos" Route="ProyectoPage">
+        <ShellContent ContentTemplate="{DataTemplate views:ProyectoPage}" />
+    </FlyoutItem>
+
+    <FlyoutItem Title="Tareas" Route="TareoPage">
+        <ShellContent ContentTemplate="{DataTemplate views:TareoPage}" />
+    </FlyoutItem>
+
+    <FlyoutItem Title="Menú" Route="MenuPage">
+        <ShellContent ContentTemplate="{DataTemplate views:MenuPage}" />
+    </FlyoutItem>
 
 </Shell>

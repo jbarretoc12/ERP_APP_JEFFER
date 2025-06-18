@@ -8,25 +8,8 @@ namespace AppRivera
         {
             InitializeComponent();
 
-            //verificar si hay sesion iniciada
-            bool estaLogeago = Preferences.Get("EstaLogeago", false);
-
-
-            if (estaLogeago == true)
-            {
-                MainPage = new NavigationPage(new PrincipalPage());
-                //MainPage = new PrincipalPage();
-                
-            }
-            else
-            {
-                MainPage = new LoginPage();
-            }
-
-            //MainPage = new PrincipalPage();
+            //MainPage = new AppShell();
+            MainPage = new NavigationPage(new LoginPage());
         }
-
-
-       
     }
 }
