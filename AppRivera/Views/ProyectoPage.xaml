@@ -2,11 +2,48 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="AppRivera.Views.ProyectoPage"
-             Title="ProyectoPage">
+             Title="Proyectos">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="H"
+                     x:Name="btnInicio"
+                     IconImageSource="home.svg"
+                     Order="Primary"
+                     Priority="0"
+                     Clicked="btnInicio_Clicked" />
+    </ContentPage.ToolbarItems>
     <VerticalStackLayout>
-        <Label 
-            Text="Proyectos!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
+        <Button x:Name="btnNuevo" 
+                Text="+ Nuevo Proyecto"  
+                Margin="10,0,10,10" BackgroundColor="#212121"/>
+        
+        <Frame Padding="5,0,5,0" Margin="10,0,10,0" >
+            <Entry x:Name="txtbuscar" Placeholder="Busqueda"  
+                   Visual="Material"
+                   BackgroundColor="Transparent"/>
+        </Frame>
+
+
+
+        <Grid Padding="20" RowSpacing="20">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            
+            <Frame Grid.Row="0" CornerRadius="15" BackgroundColor="#e74c3c" Padding="10">
+                <StackLayout Orientation="Horizontal" Spacing="10">
+                    <Image Source="clientes.png" WidthRequest="32" HeightRequest="32"/>
+                    <Label Text="Proyectos" VerticalOptions="Center" TextColor="White" FontSize="18" />
+                </StackLayout>
+                <Frame.GestureRecognizers>
+                    <!--<TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" />-->
+                </Frame.GestureRecognizers>
+            </Frame>
+
+        </Grid>
+
+
     </VerticalStackLayout>
 </ContentPage>

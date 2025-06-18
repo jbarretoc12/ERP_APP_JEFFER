@@ -6,4 +6,9 @@ public partial class ProyectoPage : ContentPage
 	{
 		InitializeComponent();
 	}
+
+    private void btnInicio_Clicked(object sender, EventArgs e)
+    {
+        (Application.Current.MainPage as PrincipalPage)?.NavegarA(new InicioPage());
+    }
 }

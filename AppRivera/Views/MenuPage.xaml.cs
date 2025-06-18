@@ -1,3 +1,5 @@
+using AppRivera.ViewModels;
+
 namespace AppRivera.Views;
 
 public partial class MenuPage : ContentPage
@@ -5,6 +7,7 @@ public partial class MenuPage : ContentPage
 	public MenuPage()
 	{
 		InitializeComponent();
+        BindingContext = new LoginViewModel();
         lblcoUsu.Text = Preferences.Get("coUsu", "");
     }
 
@@ -16,18 +19,6 @@ public partial class MenuPage : ContentPage
     {
         (Application.Current.MainPage as PrincipalPage)?.NavegarA(new ProyectoPage());
     }
-    private async void btnCerrarSesion_Clicked(object sender, EventArgs e)
-    {
-        bool confirm = await DisplayAlert("Cerrar sesión", "¿Estás seguro que deseas cerrar sesión?", "Sí", "No");
-        if (confirm)
-        {
-            Preferences.Clear(); // Borra datos de sesión o login
-            Application.Current.MainPage = new LoginPage();
-        }
-    }
 
-    private async void btnInicio_Clicked(object sender, EventArgs e)
-    {
-        await Navigation.PushAsync(new InicioPage());
-    }
+
 }

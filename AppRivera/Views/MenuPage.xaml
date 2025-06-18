@@ -12,18 +12,16 @@
                 Clicked="IrInicio"  
                 BackgroundColor="#F0F0F0" 
                 TextColor="Black"
-                CornerRadius="0" /> 
-        
+                CornerRadius="0" />
+
         <Button Text="Proyectos"
                 Clicked="IrProyectos"  
                 BackgroundColor="#F0F0F0" 
                 TextColor="Black" 
-                Margin="0,0,0,2" 
                 CornerRadius="0" />
-        
-        <Button x:Name="btnCerrarSesion" 
-                Text="Tareos diarios" 
-                Clicked="btnCerrarSesion_Clicked" 
+        <Button 
+                Text="Cerrar Sesión" 
+                Command="{Binding LogOutCommand}"
                 BackgroundColor="#F0F0F0" 
                 TextColor="Black" 
                 CornerRadius="0" />        

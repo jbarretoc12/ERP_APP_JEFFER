@@ -1,16 +1,12 @@
-﻿using AppRivera.Services;
-using AppRivera.Views;
-using System;
-using System.Collections.Generic;
+﻿using AppRivera.Views;
 using System.ComponentModel;
-using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
-using System.Threading.Tasks;   
 using System.Windows.Input;
 using CommunityToolkit.Mvvm.Input;
 using AppRivera.Models;
 using System.Text.Json;
+using CommunityToolkit.Mvvm.ComponentModel;
 
 namespace AppRivera.ViewModels
 {
@@ -33,44 +29,15 @@ namespace AppRivera.ViewModels
         }
 
         public IAsyncRelayCommand LoginCommand { get; }
-
-        //public Command LoginCommand { get; }
         public ICommand RegisterCommand { get; }
+        public IAsyncRelayCommand LogOutCommand { get; }
 
         public LoginViewModel()
         {
-
-
-            //LoginCommand = new Command(async () => await Login());
             LoginCommand = new AsyncRelayCommand(Login);
             RegisterCommand = new Command(NavigateToRegister);
+            LogOutCommand=new AsyncRelayCommand(LogOut);
         }
-
-        //private async Task Login()
-        //{
-        //    var apiService = new ApiService();
-        //    var response = await apiService.LoginAsync(Correo, Clave);
-        //    // Manejar la respuesta
-        //    if (response.Success)
-        //    {
-        //        // Navegar a la página principal
-        //        await Shell.Current.GoToAsync("//PrincipalPage");
-        //    }
-        //    else
-        //    {
-        //        // Mostrar mensaje de error
-        //        //await Application.Current.MainPage.DisplayAlert("Error", response.Message, "OK");
-        //        await Shell.Current.DisplayAlert("Error", response.Message, "OK");
-        //    }
-        //}
-        private bool _isBusy;
-        public bool IsBusy
-        {
-            get => _isBusy;
-            set { _isBusy = value; OnPropertyChanged(); }
-        }
-
-
         private async Task Login()
         {
             try
@@ -92,25 +59,19 @@ namespace AppRivera.ViewModels
                     var result = JsonSerializer.Deserialize<LoginResponse>(responseJson);
 
                     if (result.issuccess == true) { 
-
                         // Guardar el token de forma segura
                         await SecureStorage.SetAsync("auth_token", result.token);
                         //await Application.Current.MainPage.DisplayAlert("Éxito", "Inicio de sesión correcto", "OK");
                         Application.Current.MainPage = new PrincipalPage();
-                        /*
-                         //para usar el token en tro luygar
+
+                        /* //para usar el token en otro lugar
                             var token = await SecureStorage.GetAsync("auth_token");
-
                             httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
-                         */                    
-
+                         */
                     }else
                     {
                         await Application.Current.MainPage.DisplayAlert("Error", "Credenciales incorrectas", "OK");
                     }
-
-
-
                 }
                 else
                 {
@@ -123,37 +84,6 @@ namespace AppRivera.ViewModels
                 await Application.Current.MainPage.DisplayAlert("Error", $"Ocurrió un error: {ex.Message}", "OK");
             }
 
-
-
-            //if (string.IsNullOrWhiteSpace(Correo) || string.IsNullOrWhiteSpace(Clave))
-            //{
-            //    await Shell.Current.DisplayAlert("Advertencia", "Ingrese correo y clave", "OK");
-            //    return;
-            //}
-
-            //IsBusy = true;
-            //try
-            //{
-            //    var apiService = new ApiService();
-            //    var response = await apiService.LoginAsync(Correo, Clave);
-            //    if (response.Success)
-            //    {
-            //        Preferences.Set("Correo", Correo); // guardar sesión
-            //        await Shell.Current.GoToAsync("//PrincipalPage");
-            //    }
-            //    else
-            //    {
-            //        //await Shell.Current.DisplayAlert("Error", response.Message, "OK");
-            //    }
-            //}
-            //catch (Exception ex)
-            //{
-            //    await Shell.Current.DisplayAlert("Error", $"Error inesperado: {ex.Message}", "OK");
-            //}
-            //finally
-            //{
-            //    IsBusy = false;
-            //}
         }
 
 
@@ -166,6 +96,30 @@ namespace AppRivera.ViewModels
             await Application.Current.MainPage.Navigation.PushAsync(new RegisterPage());
 
         }
+
+        private async Task LogOut()
+        {
+            try
+            {
+                bool confirm = await Application.Current.MainPage.DisplayAlert("Cerrar sesión", "¿Estás seguro que deseas cerrar sesión?", "Sí", "No");
+                if (confirm)
+                {
+                    // Elimina el token del SecureStorage
+                    SecureStorage.Remove("auth_token");
+
+                    Preferences.Clear(); // Borra datos de sesión o login
+                    Application.Current.MainPage = new LoginPage();
+                }
+                
+
+            }
+            catch (Exception ex)
+            {
+                await Application.Current.MainPage.DisplayAlert("Error", $"Ocurrió un error: {ex.Message}", "OK");
+            }
+        }
+
+
 
         public event PropertyChangedEventHandler PropertyChanged;
 
