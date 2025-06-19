@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewModels="clr-namespace:AppRivera.ViewModels"
+             x:Class="AppRivera.Views.ProyectoNuevoPage"
+             Title="Nuevo Proyecto">
+
+    <ContentPage.ToolbarItems>
+        <!--IconImageSource="home.svg"-->
+        <ToolbarItem Text="G"
+                     x:Name="btnGrabar"
+                     Order="Primary"
+                     Priority="0"
+                     Clicked="btnGrabar_Clicked" />
+    </ContentPage.ToolbarItems>
+
+
+
+
+    <StackLayout>
+      <Entry Placeholder="Nombre del Proyecto" Text="{Binding CoProv}" />
+        <Entry Placeholder="Cliente o Proveedor" Text="{Binding CoProvCli}" />
+
+          <!--<Button Text="Nuevo Proyecto" Command="{Binding NuevoProyectoCommand}" CornerRadius="0" />
+        <Button Text="Listar Proyectos" Command="{Binding ListarProyectoCommand}" CornerRadius="0" />-->
+
+    </StackLayout>
+</ContentPage>
