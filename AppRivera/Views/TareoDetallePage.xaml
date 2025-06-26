@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewModels="clr-namespace:AppRivera.ViewModels"
+             x:Class="AppRivera.Views.TareoDetallePage"
+             Title="TareoDetallePage">
+
+    <ContentPage.BindingContext>
+        <viewModels:ProyectoViewModel />
+    </ContentPage.BindingContext>
+
+    <VerticalStackLayout>
+        <Label 
+            Text="Tareo diario"
+            VerticalOptions="Center" 
+            HorizontalOptions="Center" />
+
+
+        <Label x:Name="lblcoProy" FontAttributes="Bold" FontSize="12" />
+        <Label x:Name="lbldeProy" FontAttributes="Bold" FontSize="12" />
+
+
+    </VerticalStackLayout>
+</ContentPage>

@@ -6,7 +6,7 @@ namespace AppRivera.Models
         [PrimaryKey, AutoIncrement]
         public int Id { get; set; }
         public string? CoProy { get; set; }
-        public string? CoProvCli { get; set; }
+        public string? DeProy { get; set; }
 
     }
 }

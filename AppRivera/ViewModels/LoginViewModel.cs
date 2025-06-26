@@ -63,12 +63,14 @@ namespace AppRivera.ViewModels
                         await SecureStorage.SetAsync("auth_token", result.token);
                         //await Application.Current.MainPage.DisplayAlert("Éxito", "Inicio de sesión correcto", "OK");
                         Application.Current.MainPage = new PrincipalPage();
-
+                        //Application.Current.MainPage = new AppShell();
+                        //await Shell.Current.GoToAsync("//PrincipalPage");
                         /* //para usar el token en otro lugar
                             var token = await SecureStorage.GetAsync("auth_token");
                             httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
                          */
-                    }else
+                    }
+                    else
                     {
                         await Application.Current.MainPage.DisplayAlert("Error", "Credenciales incorrectas", "OK");
                     }

@@ -8,88 +8,32 @@
     <ContentPage.BindingContext>
         <viewModels:ProyectoViewModel />
     </ContentPage.BindingContext>
-    
-    
+
 
     <ContentPage.ToolbarItems>
         <!--IconImageSource="home.svg"-->
         <ToolbarItem Text="+"
                      x:Name="btnNuevo"
+                     Clicked="btnNuevo_Clicked"
                      Order="Primary"
-                     Priority="0"
-                     Clicked="btnNuevo_Clicked" />
+                     Priority="0" />
     </ContentPage.ToolbarItems>
-    
-    <VerticalStackLayout>
 
-        
-        <Frame Padding="5,0,5,0" Margin="10,0,10,0" >
-            <Entry x:Name="txtbuscar" Placeholder="Busqueda"
+
+    <VerticalStackLayout>
+        <Frame Padding="5,0,5,0" Margin="10,10,10,0" >
+            <Entry x:Name="txtbuscar" Text="{Binding TextoBusqueda}" Placeholder="Busqueda"
                    Visual="Material"
                    BackgroundColor="Transparent"/>
         </Frame>
-
-        <CollectionView ItemsSource="{Binding Proyectos}">
-            <CollectionView.ItemTemplate>
-                <DataTemplate>
-                    <StackLayout>
-                        <Label Text="{Binding CoProy}" />
-                        <Label Text="{Binding CoProvCli}" />
-                    </StackLayout>
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
-        </CollectionView>
-
-
-
-
-
-        <CollectionView
-            x:Name="ProyectosView"
-            ItemsSource="{Binding Proyectos}"
-            SelectionMode="Single"
-            SelectedItem="{Binding ProyectoSeleccionado, Mode=TwoWay}">
-
-            <CollectionView.ItemTemplate>
-                <DataTemplate>
-                    <Grid Padding="10">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto" />
-                            <ColumnDefinition Width="*" />
-                        </Grid.ColumnDefinitions>
-                        <Image Source="{Binding ImagenUrl}" WidthRequest="60" HeightRequest="60" />
-                        <VerticalStackLayout Grid.Column="1" Padding="10,0">
-                            <Label Text="{Binding CoProy}" FontAttributes="Bold" />
-                            <Label Text="{Binding CoProvCli}" FontSize="12" />
-                        </VerticalStackLayout>
-                    </Grid>
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
-        </CollectionView>
-
-
-
-
-        <!--<Grid Padding="20" RowSpacing="20">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-            </Grid.RowDefinitions>
-            
-            <Frame Grid.Row="0" CornerRadius="0" BackgroundColor="#ffffff" Padding="10">
-                <StackLayout Orientation="Horizontal" Spacing="10">
-                    <Image Source="home.svg" WidthRequest="32" HeightRequest="32"/>
-                    <Label Text="Proyectos" VerticalOptions="Center" TextColor="black" FontSize="18" />
-                </StackLayout>
-                <Frame.GestureRecognizers>
-                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" />
-                </Frame.GestureRecognizers>
-            </Frame>
-
-
-        </Grid>-->
-
-
+        <Frame Padding="0,5,0,5" Margin="10,10,10,10">
+            <ListView x:Name="lstProyectos" ItemsSource="{Binding Proyectos}"  ItemSelected="lstProyectos_ItemSelected">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <TextCell Text="{Binding CoProy}" Detail="{Binding DeProy}"/>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </Frame>
     </VerticalStackLayout>
 </ContentPage>

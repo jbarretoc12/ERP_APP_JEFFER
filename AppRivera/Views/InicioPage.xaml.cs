@@ -2,6 +2,7 @@ using System.Net.Http.Headers;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Microsoft.Maui.Networking;
+using AppRivera.Models;
 
 namespace AppRivera.Views;
 
@@ -45,8 +46,14 @@ public partial class InicioPage : ContentPage
         httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
     }
 
+
     private void TapGestureRecognizer_Tapped(object sender, TappedEventArgs e)
     {
         (Application.Current.MainPage as PrincipalPage)?.NavegarA(new ProyectoPage());
+    }
+
+    private void TapGestureRecognizer_Tapped_1(object sender, TappedEventArgs e)
+    {
+        (Application.Current.MainPage as PrincipalPage)?.NavegarA(new TareoPage());
     }
 }

@@ -3,8 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="AppRivera.Views.InicioPage"
              Title="Menu Principal">
-    
-    
+
     <VerticalStackLayout Spacing="20" Padding="30">
         <Label x:Name="lblEstadoConexion" Text="status"/>
 
@@ -25,13 +24,13 @@
                 </Frame.GestureRecognizers>
             </Frame>
 
-            <Frame Grid.Row="1" CornerRadius="15" BackgroundColor="#e74c3c" Padding="10">
+            <Frame Grid.Row="1" CornerRadius="15" BackgroundColor="#e74c3c" Padding="10" x:Name="frameTareosDiarios">
                 <StackLayout Orientation="Horizontal" Spacing="10">
                     <Image Source="productos.png" WidthRequest="32" HeightRequest="32"/>
                     <Label Text="Tareos diarios" VerticalOptions="Center" TextColor="White" FontSize="18" />
                 </StackLayout>
                 <Frame.GestureRecognizers>
-                    <TapGestureRecognizer  />
+                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_1" />
                 </Frame.GestureRecognizers>
             </Frame>
 
@@ -45,23 +44,5 @@
                 </Frame.GestureRecognizers>
             </Frame>
         </Grid>
-
-
-        <!--<Button x:Name="btnPruebaToken" Clicked="btnPruebaToken_Clicked"/>
-        <Label x:Name="lblToken" Background="Black" TextColor="White" />-->
-        
-        
-
-  
-            
-
-
-
     </VerticalStackLayout>
-    
-    
-
-    
-    
-    
 </ContentPage>

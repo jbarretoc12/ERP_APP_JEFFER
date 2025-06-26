@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewModels="clr-namespace:AppRivera.ViewModels"
+             x:Class="AppRivera.Views.ProyectoEditarPage"
+             Title="ProyectoEditarPage">
+
+    <ContentPage.BindingContext>
+        <viewModels:ProyectoViewModel />
+    </ContentPage.BindingContext>
+
+
+
+    <ContentPage.ToolbarItems>
+        <!--IconImageSource="home.svg"-->
+        <ToolbarItem Text="G"
+                     Command="{Binding EditarCommandInterfaz}"
+                     Order="Primary"
+                     Priority="0" />
+    </ContentPage.ToolbarItems>
+
+
+    <VerticalStackLayout  Padding="20" Spacing="5">
+
+        <Frame WidthRequest="120" HeightRequest="120" CornerRadius="100" BackgroundColor="#f0f0f0" Margin="0,10">
+            <Image x:Name="imgFoto" Source="home.svg" WidthRequest="50" HeightRequest="50" />
+        </Frame>
+
+        <Label Text="Nro. Proyecto" FontSize="20" TextColor="Gray" />
+        <Frame CornerRadius="10" Padding="0" BackgroundColor="#ffffff" HasShadow="False" BorderColor="#DDDDDD">
+            <Entry x:Name="txtCoProy" Text="{Binding CoProy}" TextColor="Black" Margin="5,0,5,0" IsEnabled="False" FontSize="20" />
+        </Frame>
+        <Label Text="Descripción" FontSize="20" TextColor="Gray" />
+        <Frame CornerRadius="10" Padding="0" BackgroundColor="#ffffff" HasShadow="False" BorderColor="#DDDDDD">
+            <Entry x:Name="txtCoProvCli" Text="{Binding DeProy}" TextColor="Black" Margin="5,0,5,0"  FontSize="20" />
+        </Frame>
+        <Label Text="{Binding Resultado}" TextColor="Green" />
+
+
+
+    </VerticalStackLayout>
+</ContentPage>

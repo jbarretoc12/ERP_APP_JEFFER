@@ -5,24 +5,23 @@
              x:Class="AppRivera.Views.ProyectoNuevoPage"
              Title="Nuevo Proyecto">
 
+    <ContentPage.BindingContext>
+        <viewModels:ProyectoViewModel />
+    </ContentPage.BindingContext>
+
     <ContentPage.ToolbarItems>
-        <!--IconImageSource="home.svg"-->
         <ToolbarItem Text="G"
                      x:Name="btnGrabar"
                      Order="Primary"
                      Priority="0"
-                     Clicked="btnGrabar_Clicked" />
+                     Command="{Binding GuardarComandInterfaz}"
+                     />
     </ContentPage.ToolbarItems>
 
 
-
-
     <StackLayout>
-      <Entry Placeholder="Nombre del Proyecto" Text="{Binding CoProv}" />
-        <Entry Placeholder="Cliente o Proveedor" Text="{Binding CoProvCli}" />
-
-          <!--<Button Text="Nuevo Proyecto" Command="{Binding NuevoProyectoCommand}" CornerRadius="0" />
-        <Button Text="Listar Proyectos" Command="{Binding ListarProyectoCommand}" CornerRadius="0" />-->
+        <Entry Placeholder="Nombre del Proyecto" Text="{Binding CoProy}" />
+        <Entry Placeholder="Cliente o Proveedor" Text="{Binding DeProy}" />
 
     </StackLayout>
 </ContentPage>
