@@ -6,9 +6,11 @@
              Title="TareoDetallePage">
 
     <ContentPage.BindingContext>
-        <viewModels:ProyectoViewModel />
+        <viewModels:TareoViewModel />
     </ContentPage.BindingContext>
 
+
+    
     <VerticalStackLayout>
         <Label 
             Text="Tareo diario"
@@ -18,6 +20,24 @@
 
         <Label x:Name="lblcoProy" FontAttributes="Bold" FontSize="12" />
         <Label x:Name="lbldeProy" FontAttributes="Bold" FontSize="12" />
+
+        <Button x:Name="btnNuevoTareo" Text="Nuevo"  BackgroundColor="Black" Clicked="btnNuevoTareo_Clicked"/>
+
+        <CollectionView ItemsSource="{Binding Tareos}">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Frame BorderColor="LightGray" Margin="5" Padding="10" CornerRadius="10">
+                        <Grid ColumnDefinitions="2*,2*,2*,2*">
+                            <Label Text="{Binding CoProy}" FontAttributes="Bold" />
+                            <Label Text="{Binding DeAct}" Grid.Column="1" />
+                            <Label Text="{Binding Fecha}" Grid.Column="2" />
+                            <Label Text="{Binding horaIni}" Grid.Column="3"/>
+                            <!--TextColor="{Binding Estado, Converter={StaticResource EstadoColorConverter}}"-->
+                        </Grid>
+                    </Frame>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
 
 
     </VerticalStackLayout>

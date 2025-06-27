@@ -20,7 +20,7 @@ namespace AppRivera.Services
         {
             return _database.Table<TareoModel>().ToListAsync();
         }
-        public Task<int> InsertProyectoAsync(TareoModel tareo)
+        public Task<int> InsertTareosAsync(TareoModel tareo)
         {
             return _database.InsertAsync(tareo);
         }
@@ -34,7 +34,7 @@ namespace AppRivera.Services
             }
             tar.CoProy = tareo.CoProy; // Actualiza el campo CoProvCli
             tar.Fecha=tareo.Fecha;
-            tar.deAct = tareo.deAct; // Actualiza el campo deAct
+            tar.DeAct = tareo.DeAct; // Actualiza el campo deAct
             tar.horaIni = tareo.horaIni; // Actualiza el campo horaIni
             tar.horaFin = tareo.horaFin; // Actualiza el campo horaFin
 
@@ -49,9 +49,9 @@ namespace AppRivera.Services
             return await _database.DeleteAsync(tar);
         }
 
-        public async Task<List<TareoModel>> BuscarTareoAsync(string texto)
+       /* public async Task<List<TareoModel>> BuscarTareoAsync(string texto)
         {
             return await _database.Table<TareoModel>().Where(p => (p.deAct).ToLower().Contains(texto.ToLower())).ToListAsync();
-        }
+        }*/
     }
 }

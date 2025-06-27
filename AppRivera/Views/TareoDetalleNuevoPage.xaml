@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AppRivera.Views.TareoDetalleNuevoPage"
+             xmlns:viewModels="clr-namespace:AppRivera.ViewModels"
+             Title="TareoDetalleNuevoPage">
+
+    <ContentPage.BindingContext>
+        <viewModels:TareoViewModel />
+    </ContentPage.BindingContext>
+
+
+    <VerticalStackLayout  Padding="20" Spacing="10" >
+        <Label 
+            Text="Registrar Actividad"
+            VerticalOptions="Center" 
+            HorizontalOptions="Center" />
+
+        <Frame CornerRadius="5" Padding="2" BackgroundColor="#F5F5F5" HasShadow="False" BorderColor="#DDDDDD">
+            <Entry x:Name="txtCoProy" Text="{Binding CoProy}" Placeholder="Nro. de Proyecto" FontSize="20" IsEnabled="False"/>
+        </Frame>
+        <Frame CornerRadius="5" Padding="2" BackgroundColor="#F5F5F5" HasShadow="False" BorderColor="#DDDDDD">
+            <Entry x:Name="txtDeProy" Placeholder="Nro. de Proyecto" FontSize="20" IsEnabled="False"/>
+        </Frame>
+        <Frame CornerRadius="5" Padding="2" BackgroundColor="#FFFFFF" HasShadow="False" BorderColor="#DDDDDD">
+            <DatePicker x:Name="dtpFecha" Date="{Binding Fecha}"  FontSize="20"/>
+        </Frame>        
+        <Frame CornerRadius="5" Padding="2" BackgroundColor="#FFFFFF" HasShadow="False" BorderColor="#DDDDDD">
+            <Editor x:Name="txtDeAct"  Text="{Binding DeAct}" Placeholder="Actividad realizada" FontSize="20" HeightRequest="100"/>
+        </Frame>
+
+        <Frame CornerRadius="5" Padding="2" BackgroundColor="#FFFFFF" HasShadow="False" BorderColor="#DDDDDD">
+            <TimePicker  x:Name="dtphoraIni" Time="{Binding horaIni}" Format="H:mm" FontSize="20" />
+        </Frame>
+        <Frame CornerRadius="5" Padding="2" BackgroundColor="#FFFFFF" HasShadow="False" BorderColor="#DDDDDD">
+            <TimePicker  x:Name="dtphoraFin"  Time="{Binding horaFin}" Format="H:mm" FontSize="20" />
+        </Frame>
+        <Button x:Name="btnGrabarTareo" Command="{Binding GuardarTareoComandInterfaz}" Text="Gragar Actividad"/>
+        <Button x:Name="btnCerrarNuevo" Text="Cerrar Modal" Clicked="btnCerrarNuevo_Clicked"/>
+
+    </VerticalStackLayout>
+</ContentPage>

@@ -16,6 +16,7 @@ namespace AppRivera
             Routing.RegisterRoute("ProyectoNuevoPage", typeof(ProyectoNuevoPage));
             Routing.RegisterRoute(nameof(ProyectoNuevoPage), typeof(ProyectoNuevoPage));
             Routing.RegisterRoute("TareoPage", typeof(TareoPage));
+            Routing.RegisterRoute("TareoDetallePage", typeof(TareoDetallePage));
             Routing.RegisterRoute("MenuPage", typeof(MenuPage));
         }
     }

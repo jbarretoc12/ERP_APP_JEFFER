@@ -1,5 +1,7 @@
 ﻿using AppRivera.Models;
 using AppRivera.Services;
+using AppRivera.Views;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -19,7 +21,7 @@ namespace AppRivera.ViewModels
         #region columnas de la tabla (modelo)
         public int Id { get; set; }
         public string? CoProy { get; set; }
-        public string? deAct { get; set; }
+        public string? DeAct { get; set; }
         public DateTime Fecha { get; set; }
         public DateTime horaIni { get; set; }
         public DateTime horaFin { get; set; }
@@ -42,7 +44,7 @@ namespace AppRivera.ViewModels
         public string Mensaje { get; set; }
         #endregion
 
-        #region buscar por proyecto
+       /* #region buscar por proyecto
         private string _textoBusqueda;
         public string TextoBusqueda
         {
@@ -58,16 +60,16 @@ namespace AppRivera.ViewModels
             }
         }
         public ICommand FiltrarTareoCommandInterfaz { get; }
-        #endregion
+        #endregion*/
 
 
-        private readonly DatabaseService _db;
+        private readonly TareoService _db;
         public string Resultado { get; set; }
 
         public TareoViewModel()
         {
             string dbPath = Path.Combine(FileSystem.AppDataDirectory, "BDAppRivera.db3");
-            _db = new DatabaseService(dbPath);
+            _db = new TareoService(dbPath);
 
             CargarTareoComandInterfaz = new Command(async () => await ListarTareoAsync());
 
@@ -77,12 +79,12 @@ namespace AppRivera.ViewModels
 
             EliminarTareoCommandInterfaz = new Command(async () => await EliminarTareo());
 
-            FiltrarTareoCommandInterfaz = new Command(async () => await FiltrarTareoAsync());
+            //FiltrarTareoCommandInterfaz = new Command(async () => await FiltrarTareoAsync());
         }
 
         private async Task ListarTareoAsync()
         {
-            var listar = await _db.obt();
+            var listar = await _db.ObtenerTareosAsync();
             Tareos.Clear();
 
             foreach (var p in listar)
@@ -91,9 +93,86 @@ namespace AppRivera.ViewModels
             }
         }
 
+        private async Task GuardarTareo()
+        {
+            if (string.IsNullOrWhiteSpace(CoProy)) return;
+
+            /*var proyecto=new ProyectoModel
+            {
+                CoProy = CoProy,
+                DeProy = "" // Asumiendo que DeAct es el nombre del proyecto
+            };*/
+            var NuevoTareo = new TareoModel
+            {
+                Id = 0, // AutoIncrement, no es necesario asignar un valor
+                CoProy = CoProy,
+                DeAct = DeAct,
+                Fecha = Fecha,
+                horaIni = horaIni,
+                horaFin = horaFin
+            };
 
 
+
+
+            await _db.InsertTareosAsync(NuevoTareo);
+
+
+            /*(Application.Current.MainPage as PrincipalPage)?.NavegarA(new TareoDetallePage(proyecto));*/
+            await Application.Current.MainPage.Navigation.PopModalAsync();
+
+        }
+
+        private async Task EditarTareo()
+        {
+            if (string.IsNullOrWhiteSpace(DeAct) || string.IsNullOrWhiteSpace(CoProy))
+            {
+                Resultado = "Por favor Ingresar la actividad";
+                OnPropertyChanged(nameof(Resultado));
+                return;
+            }
+            var Actualizado = await _db.UpdateTareosAsync(new TareoModel
+            {
+                Id = Id, // Asegúrate de que Id tenga un valor válido
+                CoProy = CoProy,
+                DeAct = DeAct,
+                Fecha = Fecha,
+                horaIni = horaIni,
+                horaFin = horaFin
+            });
+            Resultado = Actualizado > 0 ? "Tareo actualizado correctamente" : "No se pudo actualizar el proyecto";
+            OnPropertyChanged(nameof(Resultado));
+            (Application.Current.MainPage as PrincipalPage)?.NavegarA(new TareoPage());
+        }
+
+        private async Task EliminarTareo()
+        {
+            if (Id!=0)
+            {
+                Mensaje = "Seleccionar la actividad";
+                OnPropertyChanged(nameof(Mensaje));
+                return;
+            }
+            bool confirmacion = await Application.Current.MainPage.DisplayAlert(
+            "Confirmación",
+            "¿Estás seguro que deseas continuar?",
+            "Sí",
+            "No");
+
+            if (confirmacion)
+            {
+                var resultado = await _db.EliminarTareo(Id);
+                Mensaje = resultado > 0 ? "Proyecto eliminado correctamente" : "No se pudo eliminar el proyecto";
+                OnPropertyChanged(nameof(Mensaje));
+                (Application.Current.MainPage as PrincipalPage)?.NavegarA(new TareoPage());
+            }
+        }
+
+
+
+        public event PropertyChangedEventHandler PropertyChanged;
         public event NotifyCollectionChangedEventHandler? CollectionChanged;
+
         void OnPropertyChanged(string name) => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
     }
 }

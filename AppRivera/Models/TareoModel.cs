@@ -12,7 +12,7 @@ namespace AppRivera.Models
         [PrimaryKey, AutoIncrement]
         public int Id { get; set; }
         public string? CoProy { get; set; }
-        public string? deAct { get; set; }
+        public string? DeAct { get; set; }
         public DateTime Fecha { get; set; }
         public DateTime horaIni { get; set; }
         public DateTime horaFin { get; set; }
