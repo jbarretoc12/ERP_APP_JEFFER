@@ -2,8 +2,9 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="AppRivera.Views.MenuPage"
-             Title="MenuPage">
-    <StackLayout Padding="0,0,0,0">
+             Title="MenuPage"
+             BackgroundColor="White">
+    <!--<StackLayout Padding="0,0,0,0">
         <Label x:Name="lblcoUsu"/>
         <Label Text="MENU DEL APLICATIVO" HorizontalOptions="Center" Padding="10" FontAttributes="Bold"/>
         
@@ -26,5 +27,197 @@
                 TextColor="Black" 
                 CornerRadius="0" />        
         
-    </StackLayout>
+    </StackLayout>-->
+
+    <!--<ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="15">
+            <Label x:Name="lblcoUsu"/>
+
+            --><!-- Perfil de usuario --><!--
+            <HorizontalStackLayout Spacing="15" Padding="10">
+                <Image Source="perfil.png"
+                       WidthRequest="64"
+                       HeightRequest="64"
+                       Aspect="AspectFill"
+                       Clip="EllipseGeometry Center=32,32 RadiusX=32 RadiusY=32" />
+
+                <VerticalStackLayout>
+                    <Label Text="Alexander Fuentes Medina"
+                           FontSize="16"
+                           FontAttributes="Bold"
+                           TextColor="Black" />
+                    <Label Text="afuentes@live.com"
+                           FontSize="14"
+                           TextColor="Gray" />
+                </VerticalStackLayout>
+            </HorizontalStackLayout>
+
+            --><!-- Línea separadora --><!--
+            <BoxView HeightRequest="1" BackgroundColor="#CCCCCC" />
+
+            --><!-- Título del menú --><!--
+            <Label Text="MENÚ DEL APLICATIVO"
+                   HorizontalOptions="Center"
+                   FontAttributes="Bold"
+                   FontSize="14"
+                   TextColor="Gray"
+                   Margin="0,5" />
+
+            --><!-- Botón Inicio --><!--
+            <Button x:Name="btnInicio"
+                    Text="Inicio"
+                    Clicked="IrInicio"
+                    ImageSource="icon_home.png"
+                    ContentLayout="Left, 20"
+                    BackgroundColor="#F0F0F0"
+                    TextColor="Black"
+                    CornerRadius="8"
+                    HeightRequest="50" />
+
+            --><!-- Botón Proyectos --><!--
+            <Button Text="Proyectos"
+                    Clicked="IrProyectos"
+                    ImageSource="icon_projects.png"
+                    ContentLayout="Left, 20"
+                    BackgroundColor="#F0F0F0"
+                    TextColor="Black"
+                    CornerRadius="8"
+                    HeightRequest="50" />
+
+            --><!-- Botón Cerrar Sesión --><!--
+            <Button Text="Cerrar Sesión"
+                    Command="{Binding LogOutCommand}"
+                    ImageSource="icon_logout.png"
+                    ContentLayout="Left, 20"
+                    BackgroundColor="#F0F0F0"
+                    TextColor="Red"
+                    CornerRadius="8"
+                    HeightRequest="50" />
+        </VerticalStackLayout>
+    </ScrollView>-->
+
+    <ScrollView>
+        <VerticalStackLayout Spacing="0">
+
+            <!-- Cabecera azul con perfil -->
+            <Grid BackgroundColor="#D32E2E" Padding="20">
+                <HorizontalStackLayout Spacing="15" VerticalOptions="Center">
+                    <!--<Image Source="perfil.png"
+                           WidthRequest="64"
+                           HeightRequest="64"
+                           Aspect="AspectFill"
+                           Clip="EllipseGeometry Center=32,32 RadiusX=32 RadiusY=32"
+                           BackgroundColor="White" />-->
+                    <Frame WidthRequest="70" HeightRequest="70" Padding="0" CornerRadius="35" IsClippedToBounds="True" HasShadow="False" BackgroundColor="White">
+                        <Image Source="perfil.png"
+                               WidthRequest="64"
+                               HeightRequest="70"
+                               Aspect="AspectFill" />
+                    </Frame>
+
+                    <VerticalStackLayout VerticalOptions="Center">
+                        <Label Text="Davis Llacza"
+                               FontSize="16"
+                               FontAttributes="Bold"
+                               TextColor="White" />
+                        <Label Text="Programador de Sistemas"
+                               FontSize="14"
+                               TextColor="#E3F2FD" />
+                    </VerticalStackLayout>
+                </HorizontalStackLayout>
+            </Grid>
+
+            <!-- Menú principal --><!--
+            <VerticalStackLayout Padding="20" Spacing="8">
+                <Label x:Name="lblcoUsu" IsVisible="False" />
+
+                <Label Text="MENÚ DEL APLICATIVO"
+                       HorizontalOptions="Center"
+                       FontAttributes="Bold"
+                       FontSize="14"
+                       TextColor="Gray"
+                       Margin="0,0,0,10" />
+
+                <Button x:Name="btnInicio"
+                        Text="Inicio"
+                        Clicked="IrInicio"
+                        ImageSource="icon_home.png"
+                        ContentLayout="Left, 20"
+                        BackgroundColor="#F0F0F0"
+                        TextColor="Black"
+                        CornerRadius="8"
+                        HeightRequest="50" />
+
+                <Button Text="Proyectos"
+                        Clicked="IrProyectos"
+                        ImageSource="icon_projects.png"
+                        ContentLayout="Left, 20"
+                        BackgroundColor="#F0F0F0"
+                        TextColor="Black"
+                        CornerRadius="8"
+                        HeightRequest="50" />
+            </VerticalStackLayout>-->
+
+            <!-- Menú principal con diseño moderno sin botones -->
+            <VerticalStackLayout Padding="20" Spacing="8">
+                <Label x:Name="lblcoUsu" IsVisible="False" />
+
+                <Label Text="MENÚ DEL APLICATIVO"
+                       HorizontalOptions="Center"
+                       FontAttributes="Bold"
+                       FontSize="14"
+                       TextColor="Gray"
+                       Margin="0,0,0,10" />
+
+                <!-- Inicio -->
+                <Grid Padding="5">
+                    <Grid.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="IrInicio" />
+                    </Grid.GestureRecognizers>
+                    <HorizontalStackLayout Spacing="15">
+                        <Image Source="inicio.png" WidthRequest="24" HeightRequest="24" />
+                        <Label Text="Inicio" FontSize="16" VerticalOptions="Center" TextColor="Black" />
+                    </HorizontalStackLayout>
+                </Grid>
+
+                <!-- Proyectos -->
+                <Grid Padding="5">
+                    <Grid.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="IrProyectos" />
+                    </Grid.GestureRecognizers>
+                    <HorizontalStackLayout Spacing="15">
+                        <Image Source="proyectos_menu.png" WidthRequest="24" HeightRequest="24" />
+                        <Label Text="Proyectos" FontSize="16" VerticalOptions="Center" TextColor="Black" />
+                    </HorizontalStackLayout>
+                </Grid>
+
+                <!-- Tareos Diarios -->
+                <Grid Padding="5">
+                    <Grid.GestureRecognizers>
+                        <!--<TapGestureRecognizer Tapped="IrTareosDiarios" />-->
+                    </Grid.GestureRecognizers>
+                    <HorizontalStackLayout Spacing="15">
+                        <Image Source="tareos_diarios_menu.png" WidthRequest="24" HeightRequest="24" />
+                        <Label Text="Tareos Diarios" FontSize="16" VerticalOptions="Center" TextColor="Black" />
+                    </HorizontalStackLayout>
+                </Grid>
+            </VerticalStackLayout>
+
+            <!-- División -->
+            <BoxView HeightRequest="1" BackgroundColor="#EEEEEE" Margin="20,0" />
+
+            <!-- Cerrar sesión -->
+            <VerticalStackLayout Padding="20,10">
+                <Button Text="Cerrar Sesión"
+                        Command="{Binding LogOutCommand}"
+                        ImageSource="cerrar_sesion.png"
+                        ContentLayout="Left, 20"
+                        BackgroundColor="#D32E2E"
+                        TextColor="White"
+                        CornerRadius="8"
+                        HeightRequest="50" />
+            </VerticalStackLayout>
+
+        </VerticalStackLayout>
+    </ScrollView>
 </ContentPage>

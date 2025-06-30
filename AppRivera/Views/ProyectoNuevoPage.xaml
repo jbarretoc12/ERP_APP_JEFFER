@@ -10,7 +10,7 @@
     </ContentPage.BindingContext>
 
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="G"
+        <ToolbarItem IconImageSource="guardar.png"
                      x:Name="btnGrabar"
                      Order="Primary"
                      Priority="0"

@@ -42,4 +42,19 @@ public partial class ProyectoPage : ContentPage
     {
         DisplayAlert("Base de datos", "Se eliminó correctamente", "OK");
     }
+
+    private void collectionProyectos_SelectionChanged(object sender, SelectionChangedEventArgs e)
+    {
+        if (e.CurrentSelection != null && e.CurrentSelection.Count > 0)
+        {
+            var proyectoSeleccionado = e.CurrentSelection.FirstOrDefault() as ProyectoModel;
+
+            if (proyectoSeleccionado != null)
+            {
+                Navigation.PushAsync(new ProyectoEditarPage(proyectoSeleccionado));
+            }
+
+            ((CollectionView)sender).SelectedItem = null;
+        }
+    }
 }

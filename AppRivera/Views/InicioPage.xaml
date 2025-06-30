@@ -2,47 +2,111 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="AppRivera.Views.InicioPage"
-             Title="Menu Principal">
+             Title="Menu Principal"
+             BackgroundColor="White">
 
-    <VerticalStackLayout Spacing="20" Padding="30">
-        <Label x:Name="lblEstadoConexion" Text="status"/>
+    <VerticalStackLayout Padding="20" Spacing="20">
 
-        <Grid Padding="20" RowSpacing="20">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-            </Grid.RowDefinitions>
+        <!-- Estado de conexión -->
+        <Label x:Name="lblEstadoConexion"
+               Text="Conectado a Internet"
+               TextColor="Green"
+               FontSize="14"
+               HorizontalOptions="Center" />
 
-            <Frame Grid.Row="0" CornerRadius="15" BackgroundColor="#e74c3c" Padding="10">
-                <StackLayout Orientation="Horizontal" Spacing="10">
-                    <Image Source="clientes.png" WidthRequest="32" HeightRequest="32"/>
-                    <Label Text="Proyectos" VerticalOptions="Center" TextColor="White" FontSize="18" />
-                </StackLayout>
+        <!-- Cuadrícula -->
+        <Grid ColumnDefinitions="*,*" RowDefinitions="Auto,Auto" ColumnSpacing="20" RowSpacing="20">
+
+            <!-- Proyectos -->
+            <Frame Grid.Row="0" Grid.Column="0"
+                   CornerRadius="20"
+                   BackgroundColor="#e74c3c"
+                   HeightRequest="140"
+                   HasShadow="True"
+                   Padding="0">
+                <Grid>
+                    <VerticalStackLayout HorizontalOptions="Center" VerticalOptions="Center">
+                        <Image Source="proyectos.png"
+                               WidthRequest="50"
+                               HeightRequest="50"
+                               HorizontalOptions="Center" />
+                        <Label Text="Proyectos"
+                               TextColor="White"
+                               FontAttributes="Bold"
+                               FontSize="16"
+                               HorizontalOptions="Center" />
+                    </VerticalStackLayout>
+                </Grid>
                 <Frame.GestureRecognizers>
                     <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" />
                 </Frame.GestureRecognizers>
             </Frame>
 
-            <Frame Grid.Row="1" CornerRadius="15" BackgroundColor="#e74c3c" Padding="10" x:Name="frameTareosDiarios">
-                <StackLayout Orientation="Horizontal" Spacing="10">
-                    <Image Source="productos.png" WidthRequest="32" HeightRequest="32"/>
-                    <Label Text="Tareos diarios" VerticalOptions="Center" TextColor="White" FontSize="18" />
-                </StackLayout>
+            <!-- Tareos diarios -->
+            <Frame Grid.Row="0" Grid.Column="1"
+                   CornerRadius="20"
+                   BackgroundColor="#e74c3c"
+                   HeightRequest="140"
+                   HasShadow="True"
+                   Padding="0">
+                <Grid>
+                    <VerticalStackLayout HorizontalOptions="Center" VerticalOptions="Center">
+                        <Image Source="tareos_diarios.png"
+                               WidthRequest="50"
+                               HeightRequest="50"
+                               HorizontalOptions="Center" />
+                        <Label Text="Tareos diarios"
+                               TextColor="White"
+                               FontAttributes="Bold"
+                               FontSize="16"
+                               HorizontalOptions="Center" />
+                    </VerticalStackLayout>
+                </Grid>
                 <Frame.GestureRecognizers>
                     <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_1" />
                 </Frame.GestureRecognizers>
             </Frame>
 
-            <Frame Grid.Row="2" CornerRadius="15" BackgroundColor="#e74c3c" Padding="10">
-                <StackLayout Orientation="Horizontal" Spacing="10">
-                    <Image Source="logout.png" WidthRequest="32" HeightRequest="32"/>
-                    <Label Text="Cerrar Sesión" VerticalOptions="Center" TextColor="White" FontSize="18" />
-                </StackLayout>
+            <!-- Cerrar Sesión -->
+            <Frame Grid.Row="1" Grid.Column="0"
+                   CornerRadius="20"
+                   BackgroundColor="#e74c3c"
+                   HeightRequest="140"
+                   HasShadow="True"
+                   Padding="0">
+                <Grid>
+                    <VerticalStackLayout HorizontalOptions="Center" VerticalOptions="Center">
+                        <Image Source="cerrar_sesion.png"
+                               WidthRequest="50"
+                               HeightRequest="50"
+                               HorizontalOptions="Center" />
+                        <Label Text="Cerrar Sesión"
+                               TextColor="White"
+                               FontAttributes="Bold"
+                               FontSize="16"
+                               HorizontalOptions="Center" />
+                    </VerticalStackLayout>
+                </Grid>
                 <Frame.GestureRecognizers>
                     <TapGestureRecognizer Command="{Binding LogoutCommand}" />
                 </Frame.GestureRecognizers>
             </Frame>
+
+            <!-- Futuro módulo vacío --><!--
+            <Frame Grid.Row="1" Grid.Column="1"
+                   CornerRadius="20"
+                   BackgroundColor="#e74c3c"
+                   HeightRequest="140"
+                   HasShadow="True"
+                   Padding="0">
+                <Grid>
+                    <VerticalStackLayout HorizontalOptions="Center" VerticalOptions="Center">
+                        --><!-- Imagen de futuro módulo --><!--
+                        <Image Source="" WidthRequest="50" HeightRequest="50" />
+                        <Label Text="" />
+                    </VerticalStackLayout>
+                </Grid>
+            </Frame>-->
         </Grid>
     </VerticalStackLayout>
 </ContentPage>

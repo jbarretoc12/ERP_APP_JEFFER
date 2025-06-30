@@ -12,7 +12,7 @@
 
     <ContentPage.ToolbarItems>
         <!--IconImageSource="home.svg"-->
-        <ToolbarItem Text="+"
+        <ToolbarItem IconImageSource="agregar.png"
                      x:Name="btnNuevo"
                      Clicked="btnNuevo_Clicked"
                      Order="Primary"
@@ -20,7 +20,7 @@
     </ContentPage.ToolbarItems>
 
 
-    <VerticalStackLayout>
+    <!--<VerticalStackLayout>
         <Frame Padding="5,0,5,0" Margin="10,10,10,0" >
             <Entry x:Name="txtbuscar" Text="{Binding TextoBusqueda}" Placeholder="Busqueda"
                    Visual="Material"
@@ -34,6 +34,69 @@
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
+        </Frame>
+    </VerticalStackLayout>-->
+
+    <VerticalStackLayout>
+        <!-- Buscador -->
+        <Frame Padding="5,0,5,0" Margin="10,10,10,0">
+            <Entry x:Name="txtbuscar"
+                   Text="{Binding TextoBusqueda}"
+                   Placeholder="Busqueda"
+                   Visual="Material"
+                   BackgroundColor="Transparent" />
+        </Frame>
+
+        <!-- Tabla de proyectos con CollectionView -->
+        <Frame Padding="0,5,0,5" Margin="10,10,10,10">
+            <CollectionView x:Name="collectionProyectos"
+                            ItemsSource="{Binding Proyectos}"
+                            SelectionMode="Single"
+                            SelectionChanged="collectionProyectos_SelectionChanged">
+
+                <!--<CollectionView.Header>
+                    <Grid Padding="10" ColumnDefinitions="*,2*" BackgroundColor="#E0E0E0">
+                        <Label Text="Código" FontAttributes="Bold" />
+                        <Label Text="Descripción" FontAttributes="Bold" />
+                    </Grid>
+                </CollectionView.Header>-->
+
+                <CollectionView.Header>
+                    <Grid Padding="10" ColumnDefinitions="*,2*" BackgroundColor="#E0E0E0">
+                        <Label Grid.Column="0"
+                       Text="Código"
+                       FontAttributes="Bold"
+                       TextColor="Black"
+                       VerticalOptions="Center" />
+                                <Label Grid.Column="1"
+                       Text="Descripción"
+                       FontAttributes="Bold"
+                       TextColor="Black"
+                       VerticalOptions="Center" />
+                    </Grid>
+                </CollectionView.Header>
+
+                <!--<CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid Padding="10" ColumnDefinitions="*,2*" RowSpacing="5">
+                            <Label Text="{Binding CoProy}" VerticalOptions="Center" />
+                            <Label Text="{Binding DeProy}" VerticalOptions="Center" />
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>-->
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid Padding="10" ColumnDefinitions="*,2*" RowSpacing="5">
+                            <Label Grid.Column="0"
+                   Text="{Binding CoProy}"
+                   VerticalOptions="Center" />
+                            <Label Grid.Column="1"
+                   Text="{Binding DeProy}"
+                   VerticalOptions="Center" />
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
         </Frame>
     </VerticalStackLayout>
 </ContentPage>

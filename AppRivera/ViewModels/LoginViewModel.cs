@@ -57,7 +57,6 @@ namespace AppRivera.ViewModels
                 {
                     var responseJson = await response.Content.ReadAsStringAsync();
                     var result = JsonSerializer.Deserialize<LoginResponse>(responseJson);
-
                     if (result.issuccess == true) { 
                         // Guardar el token de forma segura
                         await SecureStorage.SetAsync("auth_token", result.token);
@@ -79,15 +78,12 @@ namespace AppRivera.ViewModels
                 {
                     await Application.Current.MainPage.DisplayAlert("Error", "No se ecnotro el servicio", "OK");
                 }
-
             }
             catch (Exception ex)
             {
                 await Application.Current.MainPage.DisplayAlert("Error", $"Ocurrió un error: {ex.Message}", "OK");
             }
-
         }
-
 
         private async void NavigateToRegister()
         {
