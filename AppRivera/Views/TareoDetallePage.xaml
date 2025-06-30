@@ -23,16 +23,38 @@
 
         <Button x:Name="btnNuevoTareo" Text="Nuevo"  BackgroundColor="Black" Clicked="btnNuevoTareo_Clicked"/>
 
-        <CollectionView ItemsSource="{Binding Tareos}">
+        <CollectionView ItemsSource="{Binding Tareos}" ItemsLayout="VerticalList" HeightRequest="600">
             <CollectionView.ItemTemplate>
                 <DataTemplate>
-                    <Frame BorderColor="LightGray" Margin="5" Padding="10" CornerRadius="10">
-                        <Grid ColumnDefinitions="2*,2*,2*,2*">
-                            <Label Text="{Binding CoProy}" FontAttributes="Bold" />
-                            <Label Text="{Binding DeAct}" Grid.Column="1" />
-                            <Label Text="{Binding Fecha}" Grid.Column="2" />
-                            <Label Text="{Binding horaIni}" Grid.Column="3"/>
-                            <!--TextColor="{Binding Estado, Converter={StaticResource EstadoColorConverter}}"-->
+                    <Frame BorderColor="LightGray" Margin="5" BackgroundColor="#F9F9F9" Padding="10" CornerRadius="10">
+                        <Grid ColumnDefinitions="Auto, Auto,Auto,Auto" RowDefinitions="Auto,Auto,Auto">
+                            
+                            <Label Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" 
+                                   VerticalOptions="Center"
+                                   Text="{Binding Item}" FontAttributes="Bold" 
+                                   WidthRequest="50"/>
+
+                            <Label Grid.Row="0"  Grid.Column="1"
+                                   Text="{Binding Fecha, StringFormat='{0:dd/MM/yyyy}'}"
+                                    FontSize="18" FontAttributes="Bold"/>
+
+                            <Label Grid.Row="1" Grid.Column="1" 
+                                   Text="{Binding DeAct}" WidthRequest="200"
+                                    FontSize="18"/>
+
+                            <Button Grid.Row="0" Grid.Column="2" 
+                                   Text="{Binding horaIni, StringFormat='{0:hh\\:mm}'}" 
+                                    WidthRequest="70" BackgroundColor="White" TextColor="Black" FontAttributes="Bold" FontSize="18" Padding="0" Margin="1" HeightRequest="30" />
+
+                            <Button Grid.Row="1" Grid.Column="2" 
+                                   Text="{Binding horaFin, StringFormat='{0:hh\\:mm}'}" 
+                                    WidthRequest="70" BackgroundColor="White" TextColor="Black" FontAttributes="Bold" FontSize="18" Padding="0" Margin="1" HeightRequest="30"/>
+
+                                <Button Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2"  WidthRequest="40" 
+                                    x:Name="btnModificar" Text="M" />
+
+                                <Button Grid.Row="2" Grid.Column="1" WidthRequest="40" 
+                                    x:Name="btnEliminar" Text="E" />
                         </Grid>
                     </Frame>
                 </DataTemplate>

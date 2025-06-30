@@ -14,7 +14,7 @@ using System.Windows.Input;
 
 namespace AppRivera.ViewModels
 {
-    public class TareoViewModel:INotifyCollectionChanged
+    public class TareoViewModel:INotifyPropertyChanged
     {
         public ObservableCollection<TareoModel> Tareos { get; set; } = new();
 
@@ -23,8 +23,8 @@ namespace AppRivera.ViewModels
         public string? CoProy { get; set; }
         public string? DeAct { get; set; }
         public DateTime Fecha { get; set; }
-        public DateTime horaIni { get; set; }
-        public DateTime horaFin { get; set; }
+        public TimeSpan horaIni { get; set; }
+        public TimeSpan horaFin { get; set; }
         #endregion
 
         #region Listar todo
@@ -44,23 +44,23 @@ namespace AppRivera.ViewModels
         public string Mensaje { get; set; }
         #endregion
 
-       /* #region buscar por proyecto
-        private string _textoBusqueda;
-        public string TextoBusqueda
+        #region buscar por proyecto
+        private string _coProy;
+        public string ProyectoBusqueda
         {
-            get => _textoBusqueda;
+            get => _coProy;
             set
             {
-                if (_textoBusqueda != value)
+                if (_coProy != value)
                 {
-                    _textoBusqueda = value;
-                    OnPropertyChanged(nameof(TextoBusqueda));
+                    _coProy = value;
+                    OnPropertyChanged(nameof(ProyectoBusqueda));
                     _ = Filtrar(); // 🔍 Filtrar al escribir
                 }
             }
         }
-        public ICommand FiltrarTareoCommandInterfaz { get; }
-        #endregion*/
+        public ICommand BuscarProyectosCommandInterfaz { get; }
+        #endregion
 
 
         private readonly TareoService _db;
@@ -79,16 +79,19 @@ namespace AppRivera.ViewModels
 
             EliminarTareoCommandInterfaz = new Command(async () => await EliminarTareo());
 
+            BuscarProyectosCommandInterfaz = new Command(async () => await BuscarTareoXproyectoAsync());
+
             //FiltrarTareoCommandInterfaz = new Command(async () => await FiltrarTareoAsync());
         }
 
         private async Task ListarTareoAsync()
         {
             var listar = await _db.ObtenerTareosAsync();
+            int i = 1;
             Tareos.Clear();
-
             foreach (var p in listar)
             {
+                p.Item = i ++;
                 Tareos.Add(p);
             }
         }
@@ -111,10 +114,6 @@ namespace AppRivera.ViewModels
                 horaIni = horaIni,
                 horaFin = horaFin
             };
-
-
-
-
             await _db.InsertTareosAsync(NuevoTareo);
 
 
@@ -166,6 +165,42 @@ namespace AppRivera.ViewModels
                 OnPropertyChanged(nameof(Mensaje));
                 (Application.Current.MainPage as PrincipalPage)?.NavegarA(new TareoPage());
             }
+        }
+
+
+
+        private async Task BuscarTareoXproyectoAsync()
+        {
+            var listar = await _db.ServiciolistarTareoXproyecto(ProyectoBusqueda);
+            Tareos.Clear();
+            int i = 1;
+            foreach (var p in listar)
+            {
+                p.Item = i++;
+                Tareos.Add(p);
+            }
+        }
+
+
+
+        private async Task Filtrar()
+        {
+            if (string.IsNullOrWhiteSpace(ProyectoBusqueda))
+            {
+                await BuscarTareoXproyectoAsync();
+            }
+            else
+            {
+                var filtrados = await _db.ServiciolistarTareoXproyecto(ProyectoBusqueda);
+                ActualizarLista(filtrados);
+            }
+        }
+
+        private void ActualizarLista(List<TareoModel> lista)
+        {
+            Tareos.Clear();
+            foreach (var p in lista)
+                Tareos.Add(p);
         }
 
 

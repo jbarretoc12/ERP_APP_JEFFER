@@ -5,9 +5,12 @@ namespace AppRivera.Views;
 
 public partial class TareoDetallePage : ContentPage
 {
-	public TareoDetallePage(ProyectoModel proyecto)
+    ProyectoModel proyecto;
+    public TareoDetallePage(ProyectoModel _proyecto)
 	{
 		InitializeComponent();
+        proyecto = _proyecto;
+        //BindingContext = new TareoViewModel(modelo); // pasar al ViewModel
         lblcoProy.Text = proyecto.CoProy;
         lbldeProy.Text = proyecto.DeProy;
     }
@@ -17,8 +20,8 @@ public partial class TareoDetallePage : ContentPage
 
         if (BindingContext is TareoViewModel vm)
         {
-            if (vm.CargarTareoComandInterfaz.CanExecute(null))
-                vm.CargarTareoComandInterfaz.Execute(null);
+            if (vm.BuscarProyectosCommandInterfaz.CanExecute(null))
+                vm.BuscarProyectosCommandInterfaz.Execute(null);
         }
     }
 

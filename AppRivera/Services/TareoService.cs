@@ -49,9 +49,16 @@ namespace AppRivera.Services
             return await _database.DeleteAsync(tar);
         }
 
-       /* public async Task<List<TareoModel>> BuscarTareoAsync(string texto)
+
+        public async Task<List<TareoModel>> ServiciolistarTareoXproyecto(string coProy)
         {
-            return await _database.Table<TareoModel>().Where(p => (p.deAct).ToLower().Contains(texto.ToLower())).ToListAsync();
-        }*/
+            return await _database.Table<TareoModel>().Where(p => p.CoProy==coProy).ToListAsync();
+        }
+
+
+        /* public async Task<List<TareoModel>> BuscarTareoAsync(string texto)
+         {
+             return await _database.Table<TareoModel>().Where(p => (p.deAct).ToLower().Contains(texto.ToLower())).ToListAsync();
+         }*/
     }
 }
