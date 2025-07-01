@@ -45,16 +45,53 @@ public partial class ProyectoPage : ContentPage
 
     private void collectionProyectos_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
-        if (e.CurrentSelection != null && e.CurrentSelection.Count > 0)
+        //if (e.CurrentSelection != null && e.CurrentSelection.Count > 0)
+        //{
+        //    var proyectoSeleccionado = e.CurrentSelection.FirstOrDefault() as ProyectoModel;
+
+        //    if (proyectoSeleccionado != null)
+        //    {
+        //        Navigation.PushAsync(new ProyectoEditarPage(proyectoSeleccionado));
+        //    }
+
+        //    ((CollectionView)sender).SelectedItem = null;
+        //}
+
+        if (e.CurrentSelection.FirstOrDefault() is ProyectoModel seleccionado)
         {
-            var proyectoSeleccionado = e.CurrentSelection.FirstOrDefault() as ProyectoModel;
-
-            if (proyectoSeleccionado != null)
+            // Cambia el fondo del ítem seleccionado
+            foreach (var item in collectionProyectos.ItemsSource)
             {
-                Navigation.PushAsync(new ProyectoEditarPage(proyectoSeleccionado));
+                if (item is ProyectoModel proyecto)
+                    proyecto.IsSelected = proyecto == seleccionado;
             }
-
-            ((CollectionView)sender).SelectedItem = null;
         }
     }
+
+    private async void OnProyectoTapped(object sender, TappedEventArgs e)
+    {
+        if (sender is Grid grid && e.Parameter is ProyectoModel proyecto)
+        {
+            // Animación
+            await grid.ScaleTo(0.97, 80, Easing.CubicOut);
+            await grid.ScaleTo(1.0, 80, Easing.CubicIn);
+
+            // Ir a la página de edición
+            await Navigation.PushAsync(new ProyectoEditarPage(proyecto));
+        }
+    }
+
+    private async void OnItemTapped(object sender, EventArgs e)
+    {
+        if (sender is Grid grid && grid.BindingContext is ProyectoModel proyecto)
+        {
+            // Animación
+            await grid.ScaleTo(0.95, 100, Easing.CubicInOut);
+            await grid.ScaleTo(1, 100, Easing.CubicInOut);
+
+            // Ir a la página de edición
+            await Navigation.PushAsync(new ProyectoEditarPage(proyecto));
+        }
+    }
+
 }

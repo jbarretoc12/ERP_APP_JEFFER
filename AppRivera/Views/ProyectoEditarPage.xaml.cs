@@ -16,7 +16,4 @@ public partial class ProyectoEditarPage : ContentPage
             DeProy = proyecto.DeProy
         };
     }
-
-
-
 }

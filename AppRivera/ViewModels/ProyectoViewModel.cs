@@ -159,5 +159,11 @@ namespace AppRivera.ViewModels
         public event PropertyChangedEventHandler PropertyChanged;
         void OnPropertyChanged(string name) => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
 
+        public ProyectoViewModel(ProyectoModel proyecto)
+        {
+            CoProy = proyecto.CoProy;
+            DeProy = proyecto.DeProy;
+        }
+
     }
 }
